@@ -3,3 +3,18 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+h1,
+h2,
+p {
+  color: rgb(241, 247, 246);
+}
+
+li {
+  list-style-type: none;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

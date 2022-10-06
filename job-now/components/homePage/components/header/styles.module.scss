@@ -1,0 +1,51 @@
+.Container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  height: 4rem;
+  background-color: rgba(19, 22, 26, 0.158);
+  border-radius: 0px 0px 10px 10px;
+  padding: 20px;
+
+  h2 {
+    font-weight: 900;
+    font-size: 2rem;
+  }
+
+  ul {
+    // background-color: red;
+    width: 11rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    li {
+      a {
+        font-size: 1.5rem;
+        color: rgb(50, 226, 188);
+      }
+
+      a:hover {
+        color: rgb(162, 231, 216);
+        font-size: 1.7rem;
+      }
+    }
+  }
+
+  button {
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    width: 7rem;
+    height: 3rem;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: rgb(243, 237, 237);
+  }
+
+  button:active {
+    background-color: rgb(50, 226, 188);
+  }
+}

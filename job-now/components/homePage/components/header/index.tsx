@@ -1,8 +1,13 @@
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 export function Header() {
+  const Router = useRouter();
+
   return (
     <div className={styles.Container}>
-      <h2>Jow Now</h2>
+      <h2>Job Now</h2>
 
       <ul>
         <li>
@@ -24,7 +29,7 @@ export function Header() {
           </a>
         </li>
       </ul>
-      <button>Entre</button>
+      <button onClick={() => Router.push("login")}>Entre</button>
     </div>
   );
 }

@@ -1,8 +1,78 @@
 .Container {
   height: 100vh;
-  width: 100vw;
-  background-image: url("/images/background2.jpg");
+  width: auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .loginform {
+    width: 50vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #Empregador {
+    background-color: rgba(36, 51, 51, 0.966);
+    background-image: url("/images/Empregador.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(1px);
+  }
+
+  #Empregador:hover {
+    filter: blur(0px);
+  }
+
+  #Programador {
+    background-color: rgba(36, 51, 51, 0.966);
+    background-image: url("/images/programador.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(1px);
+  }
+
+  #Programador:hover {
+    filter: blur(0px);
+  }
+
+  .Titulo,
+  .EntrarProgramador,
+  .EntrarEmpresa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50%;
+    height: 100px;
+
+    font-size: 3rem;
+
+    border-radius: 15px;
+    background-color: rgb(19, 42, 46);
+  }
+
+  .EntrarEmpresa {
+    background-color: #e3e5e9;
+
+    .Linkedin {
+      cursor: pointer;
+    }
+  }
+
+  .EntrarProgramador {
+    background-color: #e3e5e9;
+
+    .Github {
+      cursor: pointer;
+    }
+  }
 }

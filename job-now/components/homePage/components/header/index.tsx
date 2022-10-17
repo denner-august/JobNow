@@ -1,6 +1,5 @@
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 export function Header() {
   const Router = useRouter();

@@ -51,3 +51,43 @@
     }
   }
 }
+
+.Container2 {
+  display: flex;
+
+  height: 93vh;
+  background-color: rgb(255, 255, 255);
+  .photo {
+    height: 93vh;
+    width: 40vw;
+    filter: brightness(50%);
+  }
+
+  .Menu {
+    width: 60vw;
+    height: 93vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .carrosel {
+      height: 93vh;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .options {
+      filter: opacity(0%);
+      z-index: 2;
+      position: absolute;
+      background-color: rgb(0, 0, 0);
+      height: 93vh;
+      width: 60vw;
+    }
+
+    .options:hover {
+      filter: opacity(15%);
+    }
+  }
+}

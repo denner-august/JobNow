@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import styles from "../styles/login.module.scss";
@@ -15,21 +15,25 @@ export default function Login() {
     heigth: 50,
   };
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (session) {
       router.push("user");
+      setLoading(false);
     }
+    setLoading(false);
   }, [router, session]);
-
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
 
   function Logar() {
     if (session) {
       signOut();
     }
     signIn();
+  }
+
+  if (loading === true) {
+    return <h1>carregando</h1>;
   }
 
   return (

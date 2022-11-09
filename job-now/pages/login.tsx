@@ -42,6 +42,7 @@ export default function Login() {
       <div className={styles.loginform} id={styles.Empregador}>
         <div className={styles.Titulo}>
           <Image
+            alt="imagem de uma empresa"
             src={"/images/Empregador.jpg"}
             layout="fill"
             objectFit="cover"
@@ -51,6 +52,7 @@ export default function Login() {
       <div className={styles.loginform} id={styles.Programador}>
         <div className={styles.Titulo}>
           <Image
+            alt="imagem de um programador"
             src={"/images/programador.jpg"}
             layout="fill"
             objectFit="cover"

@@ -18,26 +18,13 @@
     align-items: center;
   }
 
-  #Empregador {
-    background-color: rgba(36, 51, 51, 0.966);
-    background-image: url("/images/Empregador.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  #Empregador,
+  #Programador {
     filter: blur(1px);
   }
 
   #Empregador:hover {
     filter: blur(0px);
-  }
-
-  #Programador {
-    background-color: rgba(36, 51, 51, 0.966);
-    background-image: url("/images/programador.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(1px);
   }
 
   #Programador:hover {

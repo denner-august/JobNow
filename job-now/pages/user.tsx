@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Router from "next/router";
 
 import Jobs from "../jobs/jobs.json";
-import { jobProps } from "./types/jobs";
+import { jobProps } from "../types/jobs";
 
 export default function User() {
   const { data: session } = useSession();

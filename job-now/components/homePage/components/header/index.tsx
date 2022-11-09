@@ -15,7 +15,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            github
+            Github
           </a>
         </li>
         <li>
@@ -25,6 +25,15 @@ export function Header() {
             rel="noopener noreferrer"
           >
             Linkedin
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/channel/UC83BbwCzMr-p4MXuDH_ZyCw"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Youtube
           </a>
         </li>
       </ul>

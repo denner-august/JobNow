@@ -5,6 +5,7 @@ import styles from "../styles/login.module.scss";
 
 import { useRouter } from "next/router";
 import { LoginButton } from "../tools/LoginButton";
+import Image from "next/image";
 
 export default function Login() {
   const { data: session } = useSession();
@@ -40,12 +41,20 @@ export default function Login() {
     <div className={styles.Container}>
       <div className={styles.loginform} id={styles.Empregador}>
         <div className={styles.Titulo}>
-          <p>Empresa</p>
+          <Image
+            src={"/images/Empregador.jpg"}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
       </div>
       <div className={styles.loginform} id={styles.Programador}>
         <div className={styles.Titulo}>
-          <p>Programador</p>
+          <Image
+            src={"/images/programador.jpg"}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
       </div>
       <button className={styles.EntrarProgramador} onClick={Logar}>

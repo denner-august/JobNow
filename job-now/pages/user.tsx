@@ -1,56 +1,32 @@
+import { useContext, useEffect } from "react";
+import Router from "next/router";
+import styles from "../styles/user.module.scss";
+import { Context } from "../context/userContext";
+
 import Image from "next/future/image";
 
-import styles from "../styles/user.module.scss";
-import { useSession, signOut } from "next-auth/react";
-import { useEffect } from "react";
-import Router from "next/router";
-
 import Jobs from "../jobs/jobs.json";
+
 import { jobProps } from "../types/jobs";
+import { HeaderDefaul } from "../components/homePage/components/headerLogin/index";
 
 export default function User() {
-  const { data: session } = useSession();
+  const { user } = useContext(Context);
 
   useEffect(() => {
-    if (session) {
+    if (user) {
       return;
     } else {
       Router.push("/");
     }
-  }, [session]);
-
-  function Logout() {
-    if (session) {
-      signOut();
-      Router.push("/");
-    }
-    Router.push("/");
-  }
-
-  function PushInicio() {
-    Router.push("/");
-  }
+  }, [user]);
 
   return (
     <div className={styles.Container}>
-      <header className={styles.header}>
-        <button className={styles.button} onClick={PushInicio}>
-          Inicio
-        </button>
-        <p className={styles.titulo}>Job Now</p>
-        <button className={styles.perfil} onClick={Logout}>
-          <Image
-            src="/images/github2.png"
-            alt="imagem do usuario"
-            width={25}
-            height={25}
-          />
-          <p>{session?.user?.name}</p>
-        </button>
-      </header>
+      <HeaderDefaul />
 
       <div className={styles.ContainerJob}>
-        {Jobs.vagas.map((items: jobProps, index) => {
+        {Jobs.vagas.map((items: jobProps) => {
           return (
             <div className={styles.layoutVagas} key={items.detalhes}>
               <div className={styles.titulo}>

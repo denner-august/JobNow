@@ -1,22 +1,22 @@
 {
   "vagas": [
     {
+      "logo": "/images/login/white-rose-close-up.jpg",
       "titulo": "front-end React",
       "detalhes": " somos uma empresa de tecnologias buscando novos programadores para trabalhar com a gente, seja bem vindo",
       "tipo": "a distancia",
       "salario": 5000,
       "experiencia": "junior",
-      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
-      "logo": "/images/login/white-rose-close-up.jpg"
+      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"]
     },
     {
+      "logo": "/images/login/dusty-rose.jpg",
       "titulo": "back-end node",
       "detalhes": " somos uma empresa buscando dev back-end",
       "tipo": "presencial",
       "salario": 2000,
       "experiencia": "junior",
-      "tecnologias": ["Javascript", "typescript", "node", "express"],
-      "logo": "/images/login/dusty-rose.jpg"
+      "tecnologias": ["Javascript", "typescript", "node", "express"]
     }
   ]
 }

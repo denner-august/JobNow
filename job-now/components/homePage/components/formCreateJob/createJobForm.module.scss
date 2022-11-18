@@ -1,0 +1,88 @@
+.ContainerJob {
+  height: auto;
+  width: auto;
+
+  min-height: 90vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ffff;
+
+  margin: 10px;
+  padding: 10px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 70%;
+
+    height: auto;
+
+    min-height: 80vh;
+
+    input {
+      width: 90%;
+      height: 3rem;
+      padding: 10px;
+      border-radius: 5px;
+      border-color: rgb(255, 255, 255);
+      border-width: 1px;
+
+      background-color: rgba(255, 255, 255, 0);
+
+      font-size: 1.2rem;
+
+      color: white;
+    }
+
+    input:focus {
+      background-color: rgb(16, 49, 77);
+    }
+
+    ul {
+      display: flex;
+
+      label,
+      input {
+        height: 100%;
+        margin: 0px 1rem;
+      }
+
+      input[type="radio"] {
+        height: auto;
+        background-color: rgb(0, 255, 0);
+        width: 1rem;
+      }
+    }
+  }
+
+  label {
+    margin: 0.5rem 0px;
+
+    font-size: 1.5rem;
+
+    color: #ffff;
+  }
+
+  input[type="submit"] {
+    margin-top: 2rem;
+
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: rgb(73, 72, 72);
+  }
+
+  input[type="submit"]:active {
+    background-color: rgb(129, 128, 128);
+  }
+}

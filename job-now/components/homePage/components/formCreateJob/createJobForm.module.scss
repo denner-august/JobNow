@@ -28,7 +28,8 @@
 
     min-height: 80vh;
 
-    input {
+    input,
+    button {
       width: 90%;
       height: 3rem;
       padding: 10px;
@@ -47,13 +48,41 @@
       background-color: rgb(16, 49, 77);
     }
 
+    button {
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+
+    button:active {
+      background-color: rgb(16, 49, 77);
+    }
+
     ul {
       display: flex;
+      flex-wrap: wrap;
+      height: auto;
 
+      width: 90%;
       label,
       input {
         height: 100%;
         margin: 0px 1rem;
+      }
+
+      input {
+        width: 10rem;
+        height: 5rem;
+
+        border-radius: 10px;
+        border-style: solid;
+
+        text-align: center;
+
+        font-size: 1.3rem;
+      }
+
+      li {
+        margin: 1rem 0px;
       }
 
       input[type="radio"] {

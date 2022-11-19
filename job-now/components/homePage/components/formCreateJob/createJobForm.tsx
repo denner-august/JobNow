@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 
 import styles from "./createJobForm.module.scss";
 
@@ -6,18 +6,36 @@ import { CreateJobFormProps } from "../../../../types/createJobForm";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./formValidation";
+import React from "react";
 
 export function CreateJobForm() {
   const {
+    control,
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm<CreateJobFormProps>({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: CreateJobFormProps) => {
+
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: "Tecnologias",
+    }
+  );
+
+  const onSubmit = (data: any) => {
     console.log(data);
   };
+
+  function addTecnologia(e: React.FormEvent) {
+    e.preventDefault();
+    append({
+      linguagem: "javascript",
+    });
+  }
 
   return (
     <div className={styles.ContainerJob}>
@@ -77,11 +95,19 @@ export function CreateJobForm() {
 
         <h1>{errors.Tecnologias?.message}</h1>
         <label>Quais tecnologias necessárias para a vaga?</label>
-        <input
-          placeholder="Digite o que é necesario saber para a vaga"
-          {...register("Tecnologias")}
-          defaultValue="javascript"
-        />
+
+        <ul>
+          {fields.map((Tecnologias, index) => (
+            <li>
+              <input
+                key={Tecnologias.id}
+                {...register(`Tecnologias.${index}.linguagem`)}
+              />
+            </li>
+          ))}
+        </ul>
+
+        <button onClick={addTecnologia}>Adicionar tecnologia</button>
 
         <input type="submit" />
       </form>

@@ -5,5 +5,6 @@ export interface CreateJobFormProps {
   tipo: ["home office", "presencial", "hibrido"];
   Salario: number;
   Experiencia: string;
-  Tecnologias: string[];
+  Tecnologias: { linguagem: String }[];
+  name: string;
 }

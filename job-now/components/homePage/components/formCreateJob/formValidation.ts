@@ -5,10 +5,17 @@ export const schema = yup
     TituloVaga: yup.string().required("Escreva o titulo da vaga"),
     Detalhes: yup.string().required("Escrava os detalhes da vaga"),
     tipo: yup.string().required("qual o tipo da vaga?"),
-    Salario: yup.string().required("qaul o salario para essa vaga?"),
-    Experiencia: yup.string().required(),
+    Salario: yup
+      .number()
+      .required("Qual o salario para essa vaga?")
+      .typeError("Qual o salario para essa vaga?"),
     Tecnologias: yup
-      .string()
-      .required("quais tecnologias vão ser usadas nessa vaga"),
+      .array(
+        yup.object({
+          linguagem: yup.string().required("linguagem ncessario"),
+        })
+      )
+      .required(),
   })
+  .required()
   .required();

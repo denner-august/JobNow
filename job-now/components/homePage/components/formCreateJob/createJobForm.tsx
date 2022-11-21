@@ -17,6 +17,10 @@ export function CreateJobForm() {
     formState: { errors },
   } = useForm<CreateJobFormProps>({
     resolver: yupResolver(schema),
+
+    defaultValues: {
+      Tecnologias: [{ linguagem: "" }],
+    },
   });
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
@@ -33,32 +37,33 @@ export function CreateJobForm() {
   function addTecnologia(e: React.FormEvent) {
     e.preventDefault();
     append({
-      linguagem: "javascript",
+      linguagem: "",
     });
   }
 
   return (
     <div className={styles.ContainerJob}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>{errors.TituloVaga?.message}</h1>
+        <p>{errors.TituloVaga?.message}</p>
         <label>Titulo da vaga</label>
         <input
           placeholder="Titulo da vaga"
           {...register("TituloVaga")}
-          defaultValue="titulo da vaga"
+          // defaultValue="titulo da vaga"
         />
 
-        <h1>{errors.Detalhes?.message}</h1>
+        <p>{errors.Detalhes?.message}</p>
         <label>Diga os detalhes da vaga</label>
-        <input
+        <textarea
           placeholder="Detalhes da vaga"
           {...register("Detalhes")}
-          defaultValue="detalhes da vaga"
+          // defaultValue="
+          // Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus voluptate, deserunt, reprehenderit doloremque placeat voluptatem quod accusantium molestiae commodi eos provident aspernatur? Debitis voluptate tempore mollitia error. Architecto, repellendus."
         />
 
-        <h1>{errors.tipo?.message}</h1>
+        <p>{errors.tipo?.message}</p>
         <label>Qual o tipo da vaga</label>
-        <ul>
+        <ul className={styles.tipo}>
           <label>distancia </label>
           <input
             {...register("tipo")}
@@ -77,14 +82,14 @@ export function CreateJobForm() {
           <input {...register("tipo")} type="radio" value="Hibrido" />
         </ul>
 
-        <h1>{errors.Salario?.message}</h1>
+        <p>{errors.Salario?.message}</p>
         <input
           placeholder="Qual o salario para a vaga"
           {...register("Salario")}
-          defaultValue={500}
+          // defaultValue={500}
         />
 
-        <h1>{errors.Experiencia?.message}</h1>
+        <p>{errors.Experiencia?.message}</p>
         <label>experiencia</label>
         <input
           defaultValue="junior"
@@ -93,16 +98,12 @@ export function CreateJobForm() {
           disabled
         />
 
-        <h1>{errors.Tecnologias?.message}</h1>
         <label>Quais tecnologias necessárias para a vaga?</label>
 
         <ul>
           {fields.map((Tecnologias, index) => (
-            <li>
-              <input
-                key={Tecnologias.id}
-                {...register(`Tecnologias.${index}.linguagem`)}
-              />
+            <li key={Tecnologias.id}>
+              <input {...register(`Tecnologias.${index}.linguagem`)} required />
             </li>
           ))}
         </ul>

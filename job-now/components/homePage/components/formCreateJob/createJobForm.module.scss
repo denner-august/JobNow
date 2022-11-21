@@ -28,8 +28,15 @@
 
     min-height: 80vh;
 
+    p {
+      color: red;
+      font-size: 2rem;
+      margin: 10px 0px;
+    }
+
     input,
-    button {
+    button,
+    textarea {
       width: 90%;
       height: 3rem;
       padding: 10px;
@@ -44,12 +51,17 @@
       color: white;
     }
 
+    textarea {
+      height: 10rem;
+      // resize: none;
+    }
+
     input:focus {
       background-color: rgb(16, 49, 77);
     }
 
     button {
-      margin-top: 2rem;
+      margin-top: 1rem;
       cursor: pointer;
     }
 
@@ -91,10 +103,16 @@
         width: 1rem;
       }
     }
+
+    .tipo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+    }
   }
 
   label {
-    margin: 0.5rem 0px;
+    margin: 1rem 0px;
 
     font-size: 1.5rem;
 

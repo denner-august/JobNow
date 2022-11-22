@@ -75,6 +75,7 @@
       height: auto;
 
       width: 90%;
+
       label,
       input {
         height: 100%;
@@ -94,7 +95,24 @@
       }
 
       li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        height: auto;
         margin: 1rem 0px;
+
+        button {
+          width: 50%;
+          border-radius: 10px;
+
+          transition: 0.5ms;
+        }
+
+        button:active {
+          background-color: rgb(216, 95, 95);
+        }
       }
 
       input[type="radio"] {

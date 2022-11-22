@@ -19,16 +19,14 @@ export function CreateJobForm() {
     resolver: yupResolver(schema),
 
     defaultValues: {
-      Tecnologias: [{ linguagem: "" }],
+      Tecnologias: [{ linguagem: "Javascript" }],
     },
   });
 
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: "Tecnologias",
-    }
-  );
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "Tecnologias",
+  });
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -41,6 +39,11 @@ export function CreateJobForm() {
     });
   }
 
+  function removeTecnologia(e: React.FormEvent, index: number) {
+    e.preventDefault();
+    remove(index);
+  }
+
   return (
     <div className={styles.ContainerJob}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +52,7 @@ export function CreateJobForm() {
         <input
           placeholder="Titulo da vaga"
           {...register("TituloVaga")}
-          // defaultValue="titulo da vaga"
+          defaultValue="titulo da vaga"
         />
 
         <p>{errors.Detalhes?.message}</p>
@@ -57,8 +60,8 @@ export function CreateJobForm() {
         <textarea
           placeholder="Detalhes da vaga"
           {...register("Detalhes")}
-          // defaultValue="
-          // Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus voluptate, deserunt, reprehenderit doloremque placeat voluptatem quod accusantium molestiae commodi eos provident aspernatur? Debitis voluptate tempore mollitia error. Architecto, repellendus."
+          defaultValue="
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus voluptate, deserunt, reprehenderit doloremque placeat voluptatem quod accusantium molestiae commodi eos provident aspernatur? Debitis voluptate tempore mollitia error. Architecto, repellendus."
         />
 
         <p>{errors.tipo?.message}</p>
@@ -86,7 +89,7 @@ export function CreateJobForm() {
         <input
           placeholder="Qual o salario para a vaga"
           {...register("Salario")}
-          // defaultValue={500}
+          defaultValue={500}
         />
 
         <p>{errors.Experiencia?.message}</p>
@@ -95,7 +98,7 @@ export function CreateJobForm() {
           defaultValue="junior"
           placeholder="Experiencia"
           {...register("Experiencia")}
-          disabled
+          // disabled
         />
 
         <label>Quais tecnologias necessárias para a vaga?</label>
@@ -104,6 +107,7 @@ export function CreateJobForm() {
           {fields.map((Tecnologias, index) => (
             <li key={Tecnologias.id}>
               <input {...register(`Tecnologias.${index}.linguagem`)} required />
+              <button onClick={(e) => removeTecnologia(e, index)}>x</button>
             </li>
           ))}
         </ul>

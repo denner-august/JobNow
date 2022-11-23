@@ -19,7 +19,7 @@ export function HeaderDefaul() {
   }
 
   function PushInicio() {
-    Router.push("user");
+    Router.push("/user");
   }
 
   return (
@@ -31,7 +31,7 @@ export function HeaderDefaul() {
 
         <button
           className={styles.button}
-          onClick={() => Router.push("CreateJob")}
+          onClick={() => Router.push("/CreateJob")}
         >
           criar vaga
         </button>

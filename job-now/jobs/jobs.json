@@ -1,15 +1,17 @@
 {
   "vagas": [
     {
+      "id": 1,
       "logo": "/images/login/white-rose-close-up.jpg",
       "titulo": "front-end React",
-      "detalhes": " somos uma empresa de tecnologias buscando novos programadores para trabalhar com a gente, seja bem vindo",
+      "detalhes": "somos uma empresa de tecnologias buscando novos programadores para trabalhar com a gente, seja bem vindo",
       "tipo": "a distancia",
       "salario": 5000,
       "experiencia": "junior",
       "tecnologias": ["Javascript", "typescript", "react", "Nextjs"]
     },
     {
+      "id": 2,
       "logo": "/images/login/dusty-rose.jpg",
       "titulo": "back-end node",
       "detalhes": " somos uma empresa buscando dev back-end",

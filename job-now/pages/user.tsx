@@ -13,6 +13,8 @@ import { HeaderDefaul } from "../components/homePage/components/headerLogin/inde
 export default function User() {
   const { user } = useContext(Context);
 
+  console.log(Jobs.vagas);
+
   useEffect(() => {
     if (user) {
       return;
@@ -20,6 +22,10 @@ export default function User() {
       Router.push("/");
     }
   }, [user]);
+
+  function pushViewJob(id: number) {
+    Router.push(`/ViewJob/${id}`);
+  }
 
   return (
     <div className={styles.Container}>
@@ -54,7 +60,7 @@ export default function User() {
               </ul>
 
               <div className={styles.buttonLayout}>
-                <button>Ver Vaga</button>
+                <button onClick={() => pushViewJob(items.id)}>Ver Vaga</button>
               </div>
             </div>
           );

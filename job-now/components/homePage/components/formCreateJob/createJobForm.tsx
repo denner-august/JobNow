@@ -19,7 +19,7 @@ export function CreateJobForm() {
     resolver: yupResolver(schema),
 
     defaultValues: {
-      Tecnologias: [{ linguagem: "Javascript" }],
+      Tecnologias: [{ linguagem: "javascript" }],
     },
   });
 
@@ -28,7 +28,7 @@ export function CreateJobForm() {
     name: "Tecnologias",
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: CreateJobFormProps) => {
     console.log(data);
   };
 
@@ -84,6 +84,8 @@ export function CreateJobForm() {
           <label> Hibrido </label>
           <input {...register("tipo")} type="radio" value="Hibrido" />
         </ul>
+
+        <label> Salario</label>
 
         <p>{errors.Salario?.message}</p>
         <input

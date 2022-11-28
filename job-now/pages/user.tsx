@@ -13,8 +13,6 @@ import { HeaderDefaul } from "../components/homePage/components/headerLogin/inde
 export default function User() {
   const { user } = useContext(Context);
 
-  console.log(Jobs.vagas);
-
   useEffect(() => {
     if (user) {
       return;

@@ -18,7 +18,7 @@
     "react-hook-form": "^7.37.0",
     "sass": "^1.55.0",
     "styled-components": "^5.3.6",
-    "sweetalert2": "^11.5.2",
+    "sweetalert2": "^11.4.8",
     "swiper": "^8.4.4",
     "typewriter-effect": "^2.19.0",
     "yup": "^0.32.11"

@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 
+import { emailLinkGen } from "../../tools/EmailGen";
+
 export default function ViewJob() {
   const router = useRouter();
   const { job_id } = router.query;
@@ -50,7 +52,15 @@ export default function ViewJob() {
           })}
         </p>
 
-        <button>Candidatar</button>
+        <button>
+          <a
+            href={`${emailLinkGen(`${job?.Email}`, `${job?.titulo}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Candidatar
+          </a>
+        </button>
       </div>
     </>
   );

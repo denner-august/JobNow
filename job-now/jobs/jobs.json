@@ -8,7 +8,8 @@
       "tipo": "a distancia",
       "salario": 5000,
       "experiencia": "junior",
-      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"]
+      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
+      "Email": "python.empresa@gmail.com"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "tipo": "presencial",
       "salario": 2000,
       "experiencia": "junior",
-      "tecnologias": ["Javascript", "typescript", "node", "express"]
+      "tecnologias": ["Javascript", "typescript", "node", "express"],
+      "Email": "javascript.empresa@gmail.com"
     }
   ]
 }

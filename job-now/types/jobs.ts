@@ -7,4 +7,5 @@ export interface jobProps {
   experiencia: string;
   tecnologias: string[];
   logo: string;
+  empresa: string;
 }

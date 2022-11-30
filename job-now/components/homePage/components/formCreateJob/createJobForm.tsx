@@ -5,7 +5,7 @@ import styles from "./createJobForm.module.scss";
 import { CreateJobFormProps } from "../../../../types/createJobForm";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./formValidation";
+import { schema } from "../../../../yup/formValidation";
 import React from "react";
 
 export function CreateJobForm() {
@@ -55,6 +55,15 @@ export function CreateJobForm() {
           defaultValue="titulo da vaga"
         />
 
+        <label> Email para receber os curriculos </label>
+
+        <p>{errors.emailVaga?.message}</p>
+        <input
+          placeholder="Email para os candidatos enviarem o curriculo"
+          {...register("emailVaga")}
+          defaultValue="javascript@gmail.com"
+        />
+
         <p>{errors.Detalhes?.message}</p>
         <label>Diga os detalhes da vaga</label>
         <textarea
@@ -97,10 +106,9 @@ export function CreateJobForm() {
         <p>{errors.Experiencia?.message}</p>
         <label>experiencia</label>
         <input
-          defaultValue="junior"
+          value="junior"
           placeholder="Experiencia"
           {...register("Experiencia")}
-          // disabled
         />
 
         <label>Quais tecnologias necessárias para a vaga?</label>

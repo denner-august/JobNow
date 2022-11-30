@@ -90,11 +90,20 @@
     border-style: solid;
     background-color: transparent;
 
-    color: #ffff;
-
     cursor: pointer;
 
     transition: 0.5s;
+
+    a {
+      font-size: 2rem;
+      color: #ffff;
+      text-decoration: none;
+      transition: 0.5s;
+    }
+
+    a:hover {
+      color: rgb(206, 206, 206);
+    }
   }
 
   button:hover {

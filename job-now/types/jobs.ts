@@ -1,3 +1,6 @@
+export type jobContainerProps = {
+  job: jobProps;
+};
 export interface jobProps {
   id: number;
   titulo: string;

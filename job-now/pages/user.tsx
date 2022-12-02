@@ -26,7 +26,7 @@ export default function User() {
       <HeaderDefaul />
 
       {Jobs.vagas.map((items: jobProps) => {
-        return <ExibiVaga job={items} />;
+        return <ExibiVaga key={Math.random()} job={items} />;
       })}
     </div>
   );

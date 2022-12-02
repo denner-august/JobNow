@@ -6,6 +6,7 @@ import styles from "./headerDefault.module.scss";
 
 import Router from "next/router";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export function HeaderDefaul() {
   const { user } = useContext(Context);
@@ -29,12 +30,13 @@ export function HeaderDefaul() {
           Inicio
         </button>
 
-        <button
-          className={styles.button}
-          onClick={() => Router.push("/CreateJob")}
-        >
-          criar vaga
-        </button>
+        <Link href="/CreateJob">
+          <button className={styles.button}>criar vaga</button>
+        </Link>
+
+        <Link href="/perfil">
+          <button className={styles.button}>Perfil</button>
+        </Link>
 
         <button className={styles.perfil} onClick={Logout}>
           <Image

@@ -3,12 +3,15 @@ import styles from "../../styles/Viewjob.module.scss";
 import jobs from "../../jobs/jobs.json";
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 
 import { emailLinkGen } from "../../tools/EmailGen";
+import { Context } from "../../context/userContext";
 
 export default function ViewJob() {
+  const { candidaturaName, DeletarVaga, Deletar } = useContext(Context);
+
   const router = useRouter();
   const { job_id } = router.query;
 
@@ -21,6 +24,28 @@ export default function ViewJob() {
     return job?.tecnologias.map((tec, index) => {
       return <li key={index}>{tec}</li>;
     });
+  }
+
+  function ButtonEmail() {
+    return (
+      <button>
+        <a
+          href={`${emailLinkGen(`${job?.Email}`, `${job?.titulo}`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {candidaturaName}
+        </a>
+      </button>
+    );
+  }
+
+  function ButtonDeletarVaga() {
+    return (
+      <button onClick={Deletar}>
+        <a>{candidaturaName}</a>
+      </button>
+    );
   }
 
   return (
@@ -52,15 +77,7 @@ export default function ViewJob() {
           })}
         </p>
 
-        <button>
-          <a
-            href={`${emailLinkGen(`${job?.Email}`, `${job?.titulo}`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Candidatar
-          </a>
-        </button>
+        {DeletarVaga === false ? ButtonEmail() : ButtonDeletarVaga()}
       </div>
     </>
   );

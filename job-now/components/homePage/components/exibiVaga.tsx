@@ -5,9 +5,19 @@ import { jobContainerProps } from "../../../types/jobs";
 import styles from "../../../styles/user.module.scss";
 
 import Router from "next/router";
+import { useContext } from "react";
+import { Context } from "../../../context/userContext";
 
-export function ExibiVaga({ job }: jobContainerProps) {
+export function ExibiVaga({
+  job,
+  buttonNameVaga,
+  deletarVaga,
+}: jobContainerProps) {
+  const { setCandidaturaName, setDeletarVaga } = useContext(Context);
+
   function pushViewJob(id: number) {
+    setCandidaturaName(String(buttonNameVaga));
+    setDeletarVaga(Boolean(deletarVaga));
     Router.push(`/ViewJob/${id}`);
   }
 

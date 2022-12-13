@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import jobs from "../jobs/jobs.json";
+import Router from "next/router";
 
 type childrens = {
   children: ReactNode;
@@ -14,6 +16,13 @@ interface UserProps {
 type ContextProps = {
   user: UserProps;
   setUser: (data: UserProps) => void;
+
+  candidaturaName: string;
+  setCandidaturaName: (name: string) => void;
+
+  DeletarVaga: boolean;
+  setDeletarVaga: (estado: boolean) => void;
+  Deletar: () => void;
 };
 
 export const Context = createContext({} as ContextProps);
@@ -23,6 +32,15 @@ export default function ContextProvider({ children }: childrens) {
 
   const [user, setUser] = useState<ContextProps | any>();
 
+  const [candidaturaName, setCandidaturaName] = useState("");
+
+  const [DeletarVaga, setDeletarVaga] = useState(false);
+
+  function Deletar() {
+    Router.push("/perfil");
+    jobs.vagas.pop();
+  }
+
   useEffect(() => {
     if (session) {
       setUser(session.user);
@@ -30,6 +48,18 @@ export default function ContextProvider({ children }: childrens) {
   }, [session]);
 
   return (
-    <Context.Provider value={{ user, setUser }}>{children}</Context.Provider>
+    <Context.Provider
+      value={{
+        user,
+        setUser,
+        candidaturaName,
+        setCandidaturaName,
+        Deletar,
+        DeletarVaga,
+        setDeletarVaga,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 }

@@ -1,5 +1,7 @@
 export type jobContainerProps = {
   job: jobProps;
+  buttonNameVaga?: string;
+  deletarVaga?: boolean;
 };
 export interface jobProps {
   id: number;

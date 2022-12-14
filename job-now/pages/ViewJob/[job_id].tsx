@@ -42,7 +42,7 @@ export default function ViewJob() {
 
   function ButtonDeletarVaga() {
     return (
-      <button onClick={Deletar}>
+      <button onClick={() => Deletar(Number(job_id))}>
         <a>{candidaturaName}</a>
       </button>
     );

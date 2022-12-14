@@ -22,7 +22,7 @@ type ContextProps = {
 
   DeletarVaga: boolean;
   setDeletarVaga: (estado: boolean) => void;
-  Deletar: () => void;
+  Deletar: (idVaga: number) => void;
 };
 
 export const Context = createContext({} as ContextProps);
@@ -36,9 +36,11 @@ export default function ContextProvider({ children }: childrens) {
 
   const [DeletarVaga, setDeletarVaga] = useState(false);
 
-  function Deletar() {
+  function Deletar(vagaId: number) {
+    const search = jobs.vagas.findIndex((vaga) => vaga.id === vagaId);
+    jobs.vagas.splice(search, 1);
+
     Router.push("/perfil");
-    jobs.vagas.pop();
   }
 
   useEffect(() => {

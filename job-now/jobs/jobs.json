@@ -2,7 +2,6 @@
   "vagas": [
     {
       "id": 1,
-
       "logo": "/images/login/white-rose-close-up.jpg",
       "titulo": "front-end React",
       "detalhes": "Estamos buscando Dev Front-end (React) para integrar o time de produto da Viajar Faz Bem. Acreditamos que viajar faz bem, que todos os brasileiros merecem viajar e que a tecnologia pode ser a maior propulsora deste propósito. ",
@@ -10,21 +9,21 @@
       "salario": 5000,
       "experiencia": "junior",
       "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
-      "Email": "python.empresa@gmail.com"
-    },
-    {
-      "id": 1,
-      "logo": "/images/login/white-rose-close-up.jpg",
-      "titulo": "front-end React",
-      "detalhes": "Estamos buscando Dev Front-end (React) para integrar o time de produto da Viajar Faz Bem. Acreditamos que viajar faz bem, que todos os brasileiros merecem viajar e que a tecnologia pode ser a maior propulsora deste propósito. ",
-      "tipo": "a distancia",
-      "salario": 5000,
-      "experiencia": "junior",
-      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
-      "Email": "python.empresa@gmail.com"
+      "Email": "denner.augusto90@gmail.com"
     },
     {
       "id": 2,
+      "logo": "/images/login/white-rose-close-up.jpg",
+      "titulo": "front-end React",
+      "detalhes": "Estamos buscando Dev Front-end (React) para integrar o time de produto da Viajar Faz Bem. Acreditamos que viajar faz bem, que todos os brasileiros merecem viajar e que a tecnologia pode ser a maior propulsora deste propósito. ",
+      "tipo": "a distancia",
+      "salario": 5000,
+      "experiencia": "junior",
+      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
+      "Email": "javascript.empresa@gmail.com"
+    },
+    {
+      "id": 3,
       "logo": "/images/login/dusty-rose.jpg",
       "titulo": "back-end node",
       "detalhes": " somos uma empresa buscando dev back-end",
@@ -32,7 +31,7 @@
       "salario": 2000,
       "experiencia": "junior",
       "tecnologias": ["Javascript", "typescript", "node", "express"],
-      "Email": "javascript.empresa@gmail.com"
+      "Email": "denner.augusto90@gmail.com"
     }
   ]
 }

@@ -12,10 +12,8 @@ export function HeaderDefaul() {
   const { user } = useContext(Context);
 
   function Logout() {
-    if (user) {
-      signOut();
-      Router.push("/");
-    }
+    signOut();
+    localStorage.removeItem("usr");
     Router.push("/");
   }
 

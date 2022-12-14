@@ -9,17 +9,19 @@ import { ExibiVaga } from "../components/homePage/components/exibiVaga";
 
 import Jobs from "../jobs/jobs.json";
 import { jobProps } from "../types/jobs";
+import { useSession } from "next-auth/react";
 
 export default function User() {
-  const { user } = useContext(Context);
+  const { data: session } = useSession();
 
   useEffect(() => {
+    const user = localStorage.getItem("usr");
     if (user) {
       return;
     } else {
       Router.push("/");
     }
-  }, [user]);
+  }, [session]);
 
   return (
     <div className={styles.Container}>

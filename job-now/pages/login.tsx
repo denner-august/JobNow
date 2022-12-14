@@ -20,16 +20,28 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      router.push("user");
+      return localStorage.setItem("usr", JSON.stringify(session?.user));
+    }
+  }, [session]);
+
+  useEffect(() => {
+    async function VerifyLogin() {
+      const user = localStorage.getItem("usr");
+      if (user) {
+        router.push("user");
+        setLoading(false);
+      }
       setLoading(false);
     }
-    setLoading(false);
+
+    VerifyLogin();
   }, [router, session]);
 
-  function Logar() {
+  async function Logar() {
     if (session) {
-      signOut();
+      await signOut();
     }
+
     signIn();
   }
 

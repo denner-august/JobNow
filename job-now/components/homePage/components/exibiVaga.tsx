@@ -26,6 +26,7 @@ export function ExibiVaga({
       <div className={styles.layoutVagas} key={job.detalhes}>
         <div className={styles.titulo}>
           <Image
+            priority={true}
             src={job.logo}
             alt="imagem do usuario"
             width={200}

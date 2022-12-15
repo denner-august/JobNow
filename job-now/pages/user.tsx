@@ -12,16 +12,15 @@ import { jobProps } from "../types/jobs";
 import { useSession } from "next-auth/react";
 
 export default function User() {
-  const { data: session } = useSession();
+  const { status } = useSession();
 
-  useEffect(() => {
-    const user = localStorage.getItem("usr");
-    if (user) {
-      return;
-    } else {
-      Router.push("/");
-    }
-  }, [session]);
+  if (status === "loading") {
+    return <h1>Carregando</h1>;
+  }
+
+  if (status === "unauthenticated") {
+    Router.push("/login");
+  }
 
   return (
     <div className={styles.Container}>

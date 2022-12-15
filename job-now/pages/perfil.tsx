@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ExibiVaga } from "../components/homePage/components/exibiVaga";
 import { HeaderDefaul } from "../components/homePage/components/headerLogin";
 
@@ -9,13 +9,21 @@ import styles from "../styles/user.module.scss";
 import { jobProps } from "../types/jobs";
 import Jobs from "../jobs/jobs.json";
 import { useSession } from "next-auth/react";
+import { Context } from "../context/userContext";
 
 export default function Perfil() {
-  const { data: session } = useSession();
+  const { user } = useContext(Context);
+  const { status } = useSession();
 
-  const [jobsUser, setJObsUser] = useState(() => {
-    return Jobs.vagas.filter((item) => item.Email === session?.user?.email);
-  });
+  const [jobsUser, setJObsUser] = useState<jobProps[]>([]);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      const VerifyJobs = Jobs.vagas.filter((item) => item.Email === user.email);
+
+      setJObsUser(VerifyJobs);
+    }
+  }, [user]);
 
   function MostraVagas() {
     return jobsUser.map((items: jobProps) => {
@@ -36,6 +44,10 @@ export default function Perfil() {
         <p>Você não criou nenhuma vaga</p>
       </div>
     );
+  }
+
+  if (status === "loading") {
+    return <h1>Carregando</h1>;
   }
 
   return (

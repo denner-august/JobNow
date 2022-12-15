@@ -12,9 +12,9 @@ export function HeaderDefaul() {
   const { user } = useContext(Context);
 
   function Logout() {
-    signOut();
+    Router.push("/login");
     localStorage.removeItem("usr");
-    Router.push("/");
+    signOut();
   }
 
   function PushInicio() {

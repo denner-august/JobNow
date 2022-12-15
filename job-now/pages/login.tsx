@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import styles from "../styles/login.module.scss";
@@ -6,8 +6,10 @@ import styles from "../styles/login.module.scss";
 import { useRouter } from "next/router";
 import { LoginButton } from "../tools/LoginButton";
 import Image from "next/image";
+import { Context } from "../context/userContext";
 
 export default function Login() {
+  const { user } = useContext(Context);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -19,15 +21,15 @@ export default function Login() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (session) {
-      return localStorage.setItem("usr", JSON.stringify(session?.user));
+    if (user) {
+      return localStorage.setItem("usr", JSON.stringify(user));
     }
-  }, [session]);
+  }, [user]);
 
   useEffect(() => {
     async function VerifyLogin() {
       const user = localStorage.getItem("usr");
-      if (user) {
+      if (user && session) {
         router.push("user");
         setLoading(false);
       }
@@ -35,10 +37,10 @@ export default function Login() {
     }
 
     VerifyLogin();
-  }, [router, session]);
+  }, [router, user]);
 
   async function Logar() {
-    if (session) {
+    if (user) {
       await signOut();
     }
 

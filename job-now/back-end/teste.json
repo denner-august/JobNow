@@ -8,12 +8,7 @@
       "tipo": "a distancia",
       "salario": 5000,
       "experiencia": "junior",
-      "tecnologias": [
-        "Javascript",
-        "typescript",
-        "react",
-        "Nextjs"
-      ],
+      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
       "Email": "denner.augusto90@gmail.com"
     },
     {
@@ -24,12 +19,7 @@
       "tipo": "a distancia",
       "salario": 5000,
       "experiencia": "junior",
-      "tecnologias": [
-        "Javascript",
-        "typescript",
-        "react",
-        "Nextjs"
-      ],
+      "tecnologias": ["Javascript", "typescript", "react", "Nextjs"],
       "Email": "javascript.empresa@gmail.com"
     },
     {
@@ -40,28 +30,7 @@
       "tipo": "presencial",
       "salario": 2000,
       "experiencia": "junior",
-      "tecnologias": [
-        "Javascript",
-        "typescript",
-        "node",
-        "express"
-      ],
-      "Email": "denner.augusto90@gmail.com"
-    },
-    {
-      "id": 4,
-      "logo": "image",
-      "titulo": "design",
-      "detalhes": "DETALHES DA VAGA ",
-      "tipo": "a distancia",
-      "salario": 5000,
-      "experiencia": "senior",
-      "tecnologias": [
-        "Javascript",
-        "typescript",
-        "react",
-        "Nextjs"
-      ],
+      "tecnologias": ["Javascript", "typescript", "node", "express"],
       "Email": "denner.augusto90@gmail.com"
     }
   ]

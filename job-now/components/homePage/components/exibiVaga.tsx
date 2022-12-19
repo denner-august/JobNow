@@ -1,18 +1,18 @@
+import { useEffect } from "react";
 import Image from "next/future/image";
-
-import { jobContainerProps } from "../../../types/jobs";
 
 import styles from "../../../styles/user.module.scss";
 
 import Router from "next/router";
 import { useContext } from "react";
 import { Context } from "../../../context/userContext";
+import { ExibiJobsProps } from "../../../types/jobs";
 
 export function ExibiVaga({
   job,
   buttonNameVaga,
   deletarVaga,
-}: jobContainerProps) {
+}: ExibiJobsProps) {
   const { setCandidaturaName, setDeletarVaga } = useContext(Context);
 
   function pushViewJob(id: number) {
@@ -21,9 +21,13 @@ export function ExibiVaga({
     Router.push(`/ViewJob/${id}`);
   }
 
+  useEffect(() => {
+    console.log(job);
+  }, []);
+
   return (
     <div className={styles.ContainerJob}>
-      <div className={styles.layoutVagas} key={job.detalhes}>
+      <div className={styles.layoutVagas} key={job.Detalhes}>
         <div className={styles.titulo}>
           <Image
             priority={true}
@@ -33,20 +37,21 @@ export function ExibiVaga({
             height={200}
           />
 
-          <p>Titulo: {job.titulo}</p>
+          <p>Titulo: {job.TituloVaga}</p>
         </div>
 
         <div className={styles.vagaDados}>
-          <p> Experiencia: {job.experiencia}</p>
-          <p> Salario: {job.salario}</p>
+          <p> Experiencia: {job.Experiencia}</p>
+          <p> Salario: {job.Salario}</p>
           <p> Modelo: {job.tipo}</p>
         </div>
 
         <ul>
           <p>Tecnologias </p>
-          {job.tecnologias.map((tec, index) => {
+
+          {/* {job.Tecnologias.map((tec, index) => {
             return <li key={index}>{tec}</li>;
-          })}
+          })} */}
         </ul>
 
         <div className={styles.buttonLayout}>

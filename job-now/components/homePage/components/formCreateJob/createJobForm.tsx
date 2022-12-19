@@ -20,7 +20,11 @@ export function CreateJobForm() {
     resolver: yupResolver(schema),
 
     defaultValues: {
-      Tecnologias: [{ linguagem: "javascript" }],
+      Tecnologias: [
+        { linguagem: "javascript" },
+        { linguagem: "python" },
+        { linguagem: "c++" },
+      ],
     },
   });
 

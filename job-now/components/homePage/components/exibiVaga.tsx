@@ -21,10 +21,6 @@ export function ExibiVaga({
     Router.push(`/ViewJob/${id}`);
   }
 
-  useEffect(() => {
-    console.log(job);
-  }, []);
-
   return (
     <div className={styles.ContainerJob}>
       <div className={styles.layoutVagas} key={job.Detalhes}>
@@ -49,9 +45,9 @@ export function ExibiVaga({
         <ul>
           <p>Tecnologias </p>
 
-          {/* {job.Tecnologias.map((tec, index) => {
-            return <li key={index}>{tec}</li>;
-          })} */}
+          {job.Tecnologias.map((tec, index) => {
+            return <li key={index}>{String(tec)}</li>;
+          })}
         </ul>
 
         <div className={styles.buttonLayout}>

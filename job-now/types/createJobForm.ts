@@ -1,4 +1,5 @@
 export interface CreateJobFormProps {
+  id: number;
   logo: string;
   TituloVaga: string;
   Detalhes: string;

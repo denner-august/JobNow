@@ -16,9 +16,17 @@ export interface jobProps {
   id: number;
   TituloVaga: string;
   Detalhes: string;
-  tipo: string;
+  tipo: string[];
   Salario: number;
   Experiencia: string;
-  Tecnologias: string[];
+  Tecnologias: string[] | {}[];
   logo: string;
+}
+
+export interface jobId extends jobProps {
+  emailVaga: string;
+  TituloVaga: string;
+  salario: String;
+  Experiencia: string;
+  Detalhes: string;
 }

@@ -8,6 +8,11 @@ export async function getJobs() {
 }
 
 export async function CreateJob(data: CreateJobFormProps) {
+  const linguangens = data.Tecnologias.flatMap(
+    (linguagens: any) => linguagens.linguagem
+  );
+  data.Tecnologias = linguangens;
+
   const indentificacao = {
     id: Math.random(),
     logo: "/images/login/white-rose-close-up.jpg",

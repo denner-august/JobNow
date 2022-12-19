@@ -1,15 +1,24 @@
+import { CreateJobFormProps } from "./createJobForm";
+
 export type jobContainerProps = {
-  job: jobProps;
+  job: CreateJobFormProps;
   buttonNameVaga?: string;
   deletarVaga?: boolean;
 };
+
+export interface ExibiJobsProps {
+  job: jobProps;
+  buttonNameVaga?: string;
+  deletarVaga?: boolean;
+}
+
 export interface jobProps {
   id: number;
-  titulo: string;
-  detalhes: string;
+  TituloVaga: string;
+  Detalhes: string;
   tipo: string;
-  salario: number;
-  experiencia: string;
-  tecnologias: string[];
+  Salario: number;
+  Experiencia: string;
+  Tecnologias: string[];
   logo: string;
 }

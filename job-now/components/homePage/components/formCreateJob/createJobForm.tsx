@@ -7,6 +7,7 @@ import { CreateJobFormProps } from "../../../../types/createJobForm";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../yup/formValidation";
+import { CreateJob } from "../../../../requests/methods";
 
 export function CreateJobForm() {
   const {
@@ -28,9 +29,9 @@ export function CreateJobForm() {
     name: "Tecnologias",
   });
 
-  const onSubmit = (data: CreateJobFormProps) => {
-    // console.log(data);
-  };
+  async function onSubmit(data: CreateJobFormProps) {
+    CreateJob(data);
+  }
 
   function addTecnologia(e: React.FormEvent) {
     e.preventDefault();

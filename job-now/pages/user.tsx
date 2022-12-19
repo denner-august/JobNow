@@ -14,13 +14,6 @@ import { CreateJobFormProps } from "../types/createJobForm";
 export default function User() {
   const { status } = useSession();
 
-  if (status === "loading") {
-    return <h1>Carregando</h1>;
-  }
-
-  if (status === "unauthenticated") {
-    Router.push("/login");
-  }
   const [Jobs, setJobs] = useState<CreateJobFormProps[]>([]);
 
   useEffect(() => {
@@ -34,6 +27,14 @@ export default function User() {
 
     return setJobs([]);
   }, [status]);
+
+  if (status === "loading") {
+    return <h1>Carregando</h1>;
+  }
+
+  if (status === "unauthenticated") {
+    Router.push("/login");
+  }
 
   if (Jobs.length === 0) {
     return <h1>Carregando</h1>;

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Image from "next/future/image";
 
 import styles from "../../../styles/user.module.scss";
@@ -19,6 +18,14 @@ export function ExibiVaga({
     setCandidaturaName(String(buttonNameVaga));
     setDeletarVaga(Boolean(deletarVaga));
     Router.push(`/ViewJob/${id}`);
+  }
+
+  function RenderTecnologias() {
+    if (job.Tecnologias) {
+      return job.Tecnologias.map((tec, index) => {
+        return <li key={index}>{String(tec)}</li>;
+      });
+    }
   }
 
   return (
@@ -45,9 +52,7 @@ export function ExibiVaga({
         <ul>
           <p>Tecnologias </p>
 
-          {job.Tecnologias.map((tec, index) => {
-            return <li key={index}>{String(tec)}</li>;
-          })}
+          {RenderTecnologias()}
         </ul>
 
         <div className={styles.buttonLayout}>

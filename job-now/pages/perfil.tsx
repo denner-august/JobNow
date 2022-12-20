@@ -7,9 +7,11 @@ import Styles from "../styles/perfil.module.scss";
 import styles from "../styles/user.module.scss";
 
 import { jobProps } from "../types/jobs";
-import Jobs from "../jobs/jobs.json";
 import { useSession } from "next-auth/react";
 import { Context } from "../context/userContext";
+import { api } from "../axios";
+
+import { jobId } from "../types/jobs";
 
 export default function Perfil() {
   const { user } = useContext(Context);
@@ -19,11 +21,20 @@ export default function Perfil() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      const VerifyJobs = Jobs.vagas.filter((item) => item.Email === user.email);
-
-      setJObsUser(VerifyJobs);
+      getJobUser();
     }
-  }, [user]);
+
+    async function getJobUser() {
+      const data = await api
+        .get("job/all")
+        .then((response) => response.data.vagas);
+
+      const filterJobUser = data.filter(
+        (job: jobId) => job.emailVaga === user.email
+      );
+      setJObsUser(filterJobUser);
+    }
+  }, [status, user]);
 
   function MostraVagas() {
     return jobsUser.map((items: jobProps) => {

@@ -8,8 +8,8 @@ export async function getJobs() {
 }
 
 export async function CreateJob(data: CreateJobFormProps) {
-  const linguangens = data.Tecnologias.flatMap(
-    (linguagens: any) => linguagens.linguagem
+  const linguangens: any = data.Tecnologias.flatMap(
+    (linguagens) => linguagens.linguagem
   );
   data.Tecnologias = linguangens;
 

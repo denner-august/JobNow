@@ -20,9 +20,6 @@ export default function ViewJob() {
   const { job_id } = router.query;
 
   const [job, setJob] = useState<jobId>();
-  const [Salario, setSalario] = useState("");
-
-  const [Tecnologias, setTecnologias] = useState<String[]>([]);
 
   useEffect(() => {
     async function apiFindJob() {
@@ -31,25 +28,19 @@ export default function ViewJob() {
         .then((response) => response.data);
 
       setJob(data);
-      setSalario(() =>
-        data.Salario.toLocaleString("pt-br", {
-          style: "currency",
-          currency: "BRL",
-        })
-      );
-
-      setTecnologias(() => data.Tecnologias.map((item) => String(item)));
     }
 
     apiFindJob();
 
     return setJob({} as jobId);
-  }, []);
+  }, [job_id]);
 
   function RenderTecnlogias() {
-    return Tecnologias.map((tec, index) => {
-      return <li key={index}>{String(tec)}</li>;
-    });
+    if (job?.Tecnologias) {
+      return job.Tecnologias.map((tec, index) => {
+        return <li key={index}>{String(tec)}</li>;
+      });
+    }
   }
 
   function ButtonEmail() {
@@ -72,6 +63,10 @@ export default function ViewJob() {
         <a>{candidaturaName}</a>
       </button>
     );
+  }
+
+  if (!job?.emailVaga) {
+    return <h1>Carregando</h1>;
   }
 
   return (
@@ -97,7 +92,14 @@ export default function ViewJob() {
         <p className={styles.experiencia}>{job?.Experiencia}</p>
 
         <h6>Salário</h6>
-        <p className={styles.salario}>{Salario}</p>
+        <p className={styles.salario}>
+          {job?.Salario
+            ? job.Salario.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })
+            : 0}
+        </p>
 
         {DeletarVaga === false ? ButtonEmail() : ButtonDeletarVaga()}
       </div>

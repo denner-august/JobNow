@@ -24,7 +24,7 @@ export default function Login() {
     if (user) {
       return localStorage.setItem("usr", JSON.stringify(user));
     }
-  }, [user]);
+  }, [user, session]);
 
   useEffect(() => {
     async function VerifyLogin() {
@@ -37,7 +37,7 @@ export default function Login() {
     }
 
     VerifyLogin();
-  }, [router, user]);
+  }, [router, user, session]);
 
   async function Logar() {
     if (user) {

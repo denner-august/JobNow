@@ -1,23 +1,24 @@
 import { useState, useContext, useEffect } from "react";
+import { api } from "../axios";
+
+import Styles from "../styles/perfil.module.scss";
+import styles from "../styles/user.module.scss";
+
 import { ExibiVaga } from "../components/homePage/components/exibiVaga";
 import { HeaderDefaul } from "../components/homePage/components/headerLogin";
 
-import Styles from "../styles/perfil.module.scss";
-
-import styles from "../styles/user.module.scss";
+import { Context } from "../context/userContext";
 
 import { jobProps } from "../types/jobs";
-import { useSession } from "next-auth/react";
-import { Context } from "../context/userContext";
-import { api } from "../axios";
-
 import { jobId } from "../types/jobs";
+
+import { useSession } from "next-auth/react";
 
 export default function Perfil() {
   const { user } = useContext(Context);
   const { status } = useSession();
 
-  const [jobsUser, setJObsUser] = useState<jobProps[]>([]);
+  const [jobsUser, setJObsUser] = useState<any>([]);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -26,14 +27,15 @@ export default function Perfil() {
 
     async function getJobUser() {
       const data = await api
-        .get("job/all")
-        .then((response) => response.data.vagas);
+        .post("/job/all/user", {
+          email: "denner.augusto90@gmail.com",
+        })
+        .then((response) => response.data);
 
-      const filterJobUser = data.filter(
-        (job: jobId) => job.emailVaga === user.email
-      );
-      setJObsUser(filterJobUser);
+      setJObsUser(data);
     }
+
+    return setJObsUser([]);
   }, [status, user]);
 
   function MostraVagas() {
@@ -65,7 +67,9 @@ export default function Perfil() {
     <div className={styles.Container}>
       <HeaderDefaul />
 
-      {jobsUser.length > 0 ? MostraVagas() : SemVaga()}
+      {jobsUser.length === 0 || jobsUser === "você não criou nenhuma vaga"
+        ? SemVaga()
+        : MostraVagas()}
     </div>
   );
 }

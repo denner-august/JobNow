@@ -10,9 +10,10 @@ import { jobProps } from "../types/jobs";
 import { useSession } from "next-auth/react";
 import { getJobs } from "../requests/methods";
 import { CreateJobFormProps } from "../types/createJobForm";
+import { api } from "../axios";
 
 export default function User() {
-  const { status } = useSession();
+  const { data: Session, status } = useSession();
 
   const [Jobs, setJobs] = useState<CreateJobFormProps[]>([]);
 
@@ -27,6 +28,23 @@ export default function User() {
 
     return setJobs([]);
   }, [status]);
+
+  useEffect(() => {
+    status === "authenticated" ?? token();
+  }, [status]);
+
+  async function token() {
+    const token = await api
+      .post("/sign", {
+        email: Session?.user?.email,
+        name: Session?.user?.name,
+      })
+      .then((response) => response.data);
+
+    localStorage.setItem("Auth", token);
+
+    console.log(token);
+  }
 
   if (status === "loading") {
     return <h1>Carregando</h1>;

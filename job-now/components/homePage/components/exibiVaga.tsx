@@ -32,13 +32,13 @@ export function ExibiVaga({
     <div className={styles.ContainerJob}>
       <div className={styles.layoutVagas} key={job.Detalhes}>
         <div className={styles.titulo}>
-          <Image
+          {/* <Image
             priority={true}
             src={job.logo}
             alt="imagem do usuario"
             width={200}
             height={200}
-          />
+          /> */}
 
           <p>Titulo: {job.TituloVaga}</p>
         </div>

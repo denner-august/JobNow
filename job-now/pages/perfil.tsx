@@ -20,21 +20,19 @@ export default function Perfil() {
 
   const [jobsUser, setJObsUser] = useState<any>([]);
 
+  async function getJobUser() {
+    const data = await api
+      .post("/job/all/user", {
+        email: "denner.augusto90@gmail.com",
+      })
+      .then((response) => response.data);
+    setJObsUser(data);
+  }
+
   useEffect(() => {
     if (status === "authenticated") {
       getJobUser();
     }
-
-    async function getJobUser() {
-      const data = await api
-        .post("/job/all/user", {
-          email: "denner.augusto90@gmail.com",
-        })
-        .then((response) => response.data);
-
-      setJObsUser(data);
-    }
-
     return setJObsUser([]);
   }, [status, user]);
 

@@ -24,7 +24,7 @@ export default function ViewJob() {
   useEffect(() => {
     async function apiFindJob() {
       const data: jobId = await api
-        .post(`/job/${job_id}/`)
+        .get(`/job/${job_id}`)
         .then((response) => response.data);
 
       setJob(data);

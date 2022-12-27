@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Router from "next/router";
+import axios from "axios";
 
 import styles from "../styles/user.module.scss";
 
@@ -30,7 +31,9 @@ export default function User() {
   }, [status]);
 
   useEffect(() => {
-    status === "authenticated" ?? token();
+    if (status === "authenticated") {
+      token();
+    }
   }, [status]);
 
   async function token() {
@@ -41,9 +44,7 @@ export default function User() {
       })
       .then((response) => response.data);
 
-    localStorage.setItem("Auth", token);
-
-    console.log(token);
+    api.defaults.headers["authorization"] = `${token}`;
   }
 
   if (status === "loading") {

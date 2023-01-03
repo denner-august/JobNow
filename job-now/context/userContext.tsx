@@ -3,6 +3,8 @@ import { useSession } from "next-auth/react";
 import jobs from "../jobs/jobs.json";
 import Router from "next/router";
 
+import { api } from "../axios";
+
 type childrens = {
   children: ReactNode;
 };
@@ -36,11 +38,28 @@ export default function ContextProvider({ children }: childrens) {
 
   const [DeletarVaga, setDeletarVaga] = useState(false);
 
-  function Deletar(vagaId: number) {
-    const search = jobs.vagas.findIndex((vaga) => vaga.id === vagaId);
-    jobs.vagas.splice(search, 1);
+  // function Deletar(vagaId: number) {
+  //   const search = jobs.vagas.findIndex((vaga) => vaga.id === vagaId);
+  //   jobs.vagas.splice(search, 1);
 
-    Router.push("/perfil");
+  //   Router.push("/perfil");
+  // }
+
+  async function Deletar(id: number) {
+    const response = await api
+      .delete(`/job/user/${id}`, { data: { email: session?.user?.email } })
+      .then((response) => response.data);
+
+    if (response.mensagem === `Vaga ${id} deletada`) {
+      setTimeout(() => {
+        Router.push("/perfil");
+      }, 2000);
+      return;
+    }
+
+    console.log("vaga não removida");
+
+    // Router.push("/perfil");
   }
 
   useEffect(() => {

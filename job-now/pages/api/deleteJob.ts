@@ -6,6 +6,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   if (method !== "DELETE") {
     return res.status(400).json({ resposta: "methodo errado" });
   }
-
-  //função que deleta o trabalho expecifico de um usuario
 };
+
+//função que deleta o trabalho expecifico de um usuario

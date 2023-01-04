@@ -6,6 +6,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   if (method !== "PUT") {
     return res.status(400).json({ resposta: "methodo errado" });
   }
-
-  //função que altera um job especifico
 };
+
+//função que altera um job especifico

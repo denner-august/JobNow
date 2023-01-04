@@ -6,6 +6,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   if (method !== "POST") {
     return res.status(400).json({ resposta: "methodo errado" });
   }
-
-  //função que cria um novo trabalho
 };
+
+//função que cria um novo trabalho

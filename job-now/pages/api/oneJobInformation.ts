@@ -6,6 +6,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   if (method !== "GET") {
     return res.status(400).json({ resposta: "methodo errado" });
   }
+
+  //função que altera um job especifico
 };
 
-//retorno com os trabalhos criados até o momento
+// Pega os dados de um trabalho

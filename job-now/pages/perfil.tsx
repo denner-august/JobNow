@@ -10,9 +10,10 @@ import { HeaderDefaul } from "../components/homePage/components/headerLogin";
 import { Context } from "../context/userContext";
 
 import { jobProps } from "../types/jobs";
-import { jobId } from "../types/jobs";
 
 import { useSession } from "next-auth/react";
+
+import { getAllJobOneUser } from "../requests/allJobOneUser";
 
 export default function Perfil() {
   const { user } = useContext(Context);
@@ -21,12 +22,9 @@ export default function Perfil() {
   const [jobsUser, setJObsUser] = useState<any>([]);
 
   async function getJobUser() {
-    const data = await api
-      .post("/job/all/user", {
-        email: "denner.augusto90@gmail.com",
-      })
-      .then((response) => response.data);
+    const data = await getAllJobOneUser(user.email);
     setJObsUser(data);
+    return;
   }
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import { CreateJobFormProps } from "../types/createJobForm";
 
 import { GetAllJobs } from "../requests/jobs";
 import { CreateJob } from "../requests/methods";
+import { getAllJobOneUser } from "../requests/allJobOneUser";
 
 export default function User() {
   const { data: Session, status } = useSession();

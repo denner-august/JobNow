@@ -1,4 +1,4 @@
-import { client, q } from "../faunadb/faunaConfig";
+import { client, q } from "../pages/api/faunaConfig";
 import { CreateJobFormProps } from "../types/createJobForm";
 
 interface jobProps {

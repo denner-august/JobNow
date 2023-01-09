@@ -8,16 +8,17 @@ import { Context } from "../../../context/userContext";
 import { ExibiJobsProps } from "../../../types/jobs";
 
 export function ExibiVaga({
+  idVaga,
   job,
   buttonNameVaga,
   deletarVaga,
 }: ExibiJobsProps) {
   const { setCandidaturaName, setDeletarVaga } = useContext(Context);
 
-  function pushViewJob(id: number) {
+  function pushViewJob(idVaga: number) {
     setCandidaturaName(String(buttonNameVaga));
     setDeletarVaga(Boolean(deletarVaga));
-    Router.push(`/ViewJob/${id}`);
+    Router.push(`/ViewJob/${idVaga}`);
   }
 
   function RenderTecnologias() {
@@ -56,7 +57,7 @@ export function ExibiVaga({
         </ul>
 
         <div className={styles.buttonLayout}>
-          <button onClick={() => pushViewJob(job.id)}>Ver Vaga</button>
+          <button onClick={() => pushViewJob(idVaga)}>Ver Vaga</button>
         </div>
       </div>
     </div>

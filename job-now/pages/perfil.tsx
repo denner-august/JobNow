@@ -13,8 +13,6 @@ import { jobProps } from "../types/jobs";
 
 import { useSession } from "next-auth/react";
 
-import { getAllJobOneUser } from "../requests/allJobOneUser";
-
 export default function Perfil() {
   const { user } = useContext(Context);
   const { status } = useSession();
@@ -22,7 +20,11 @@ export default function Perfil() {
   const [jobsUser, setJObsUser] = useState<any>([]);
 
   async function getJobUser() {
-    const data = await getAllJobOneUser(user.email);
+    const data = await api
+      .post("/api/allJobOneUser", {
+        email: user?.email,
+      })
+      .then((response) => response.data);
     setJObsUser(data);
     return;
   }

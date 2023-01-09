@@ -19,6 +19,8 @@ export default function ViewJob() {
   const router = useRouter();
   const { job_id } = router.query;
 
+  //O ID RECEBIDO É O ID DA REF DO FAUNADB A BUSCA PRECISA SER POR ELE COMO REFERENCIA
+
   const [job, setJob] = useState<jobId>();
 
   useEffect(() => {

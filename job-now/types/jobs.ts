@@ -7,6 +7,7 @@ export type jobContainerProps = {
 };
 
 export interface ExibiJobsProps {
+  idVaga: number;
   job: jobProps;
   buttonNameVaga?: string;
   deletarVaga?: boolean;

@@ -7,7 +7,7 @@ import { CreateJobFormProps } from "../../../../types/createJobForm";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../yup/formValidation";
-import { CreateJob } from "../../../../requests/methods";
+import { api } from "../../../../axios";
 
 export function CreateJobForm() {
   const {
@@ -34,7 +34,9 @@ export function CreateJobForm() {
   });
 
   async function onSubmit(data: CreateJobFormProps) {
-    CreateJob(data);
+    api.post("/api/createJob", {
+      data,
+    });
   }
 
   function addTecnologia(e: React.FormEvent) {

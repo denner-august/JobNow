@@ -9,9 +9,12 @@ import { ExibiVaga } from "../components/homePage/components/exibiVaga";
 import { useSession } from "next-auth/react";
 import { CreateJobFormProps } from "../types/createJobForm";
 
-import { GetAllJobs } from "../requests/jobs";
-import { CreateJob } from "../requests/methods";
-import { getAllJobOneUser } from "../requests/allJobOneUser";
+import { Createjob } from "../requests/createJob";
+import { api } from "../axios";
+
+interface exibiProps {
+  job: { data: CreateJobFormProps };
+}
 
 export default function User() {
   const { data: Session, status } = useSession();
@@ -20,9 +23,9 @@ export default function User() {
 
   useEffect(() => {
     async function Getjobs() {
-      const jobs = await GetAllJobs().then((response) => response.data);
+      const jobs = await api.get("/api/jobs").then((response) => response.data);
 
-      const data = jobs.map((item) => item.data);
+      const data = jobs.data.map((item: any) => item);
 
       setJobs(data);
     }
@@ -30,7 +33,7 @@ export default function User() {
     Getjobs();
 
     return setJobs([]);
-  }, [status, CreateJob]);
+  }, [status, Createjob]);
 
   if (status === "loading") {
     return <h1>Carregando</h1>;
@@ -44,15 +47,18 @@ export default function User() {
     return <h1>Carregando</h1>;
   }
 
+  // TIPAR A REF QUE CONTEM O ID E O DATA POIS  A TIPAGEM INICLA JOBS:CreateJobFormProps NÃO CONTEM OS ITENS DATA E REF
+
   return (
     <div className={styles.Container}>
       <HeaderDefaul />
 
-      {Jobs.map((items: CreateJobFormProps) => {
+      {Jobs.map((items) => {
         return (
           <ExibiVaga
+            idVaga={items.ref["@ref"].id}
             key={Math.random()}
-            job={items}
+            job={items.data}
             buttonNameVaga="Candidatar"
           />
         );

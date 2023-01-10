@@ -13,13 +13,14 @@ import { Createjob } from "../requests/createJob";
 import { api } from "../axios";
 
 interface exibiProps {
-  job: { data: CreateJobFormProps };
+  data: CreateJobFormProps;
+  ref: { "@ref": { id: number } };
 }
 
 export default function User() {
   const { data: Session, status } = useSession();
 
-  const [Jobs, setJobs] = useState<CreateJobFormProps[]>([]);
+  const [Jobs, setJobs] = useState<exibiProps[]>([]);
 
   useEffect(() => {
     async function Getjobs() {
@@ -46,8 +47,6 @@ export default function User() {
   if (Jobs.length === 0) {
     return <h1>Carregando</h1>;
   }
-
-  // TIPAR A REF QUE CONTEM O ID E O DATA POIS  A TIPAGEM INICLA JOBS:CreateJobFormProps NÃO CONTEM OS ITENS DATA E REF
 
   return (
     <div className={styles.Container}>

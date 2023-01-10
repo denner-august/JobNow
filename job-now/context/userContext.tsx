@@ -57,8 +57,6 @@ export default function ContextProvider({ children }: childrens) {
       return;
     }
 
-    console.log("vaga não removida");
-
     // Router.push("/perfil");
   }
 

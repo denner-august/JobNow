@@ -13,23 +13,25 @@ import { Context } from "../../context/userContext";
 
 import { jobId } from "../../types/jobs";
 
+interface viewJobProps {
+  resposta: { data: jobId };
+}
+
 export default function ViewJob() {
   const { candidaturaName, DeletarVaga, Deletar } = useContext(Context);
 
   const router = useRouter();
   const { job_id } = router.query;
 
-  //O ID RECEBIDO É O ID DA REF DO FAUNADB A BUSCA PRECISA SER POR ELE COMO REFERENCIA
-
   const [job, setJob] = useState<jobId>();
 
   useEffect(() => {
     async function apiFindJob() {
-      const data: jobId = await api
-        .get(`/job/${job_id}`)
+      const data: viewJobProps = await api
+        .post(`api/oneJobInformation/${job_id}`)
         .then((response) => response.data);
 
-      setJob(data);
+      setJob(data.resposta.data);
     }
 
     apiFindJob();

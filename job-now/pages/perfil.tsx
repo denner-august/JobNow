@@ -13,6 +13,10 @@ import { jobProps } from "../types/jobs";
 
 import { useSession } from "next-auth/react";
 
+interface perfilProps extends jobProps {
+  ref: { ["@ref"]: { id: number } };
+}
+
 export default function Perfil() {
   const { user } = useContext(Context);
   const { status } = useSession();
@@ -37,9 +41,10 @@ export default function Perfil() {
   }, [status, user]);
 
   function MostraVagas() {
-    return jobsUser.map((items: jobProps) => {
+    return jobsUser.map((items: perfilProps) => {
       return (
         <ExibiVaga
+          idVaga={items.ref["@ref"].id}
           key={Math.random()}
           job={items}
           buttonNameVaga="Deletar"

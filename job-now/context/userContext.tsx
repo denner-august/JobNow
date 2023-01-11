@@ -24,7 +24,7 @@ type ContextProps = {
 
   DeletarVaga: boolean;
   setDeletarVaga: (estado: boolean) => void;
-  Deletar: (idVaga: number) => void;
+  Deletar: (idVaga: string | string[] | undefined) => void;
 };
 
 export const Context = createContext({} as ContextProps);
@@ -38,26 +38,12 @@ export default function ContextProvider({ children }: childrens) {
 
   const [DeletarVaga, setDeletarVaga] = useState(false);
 
-  // function Deletar(vagaId: number) {
-  //   const search = jobs.vagas.findIndex((vaga) => vaga.id === vagaId);
-  //   jobs.vagas.splice(search, 1);
+  async function Deletar(id: string | string[] | undefined) {
+    const data = await api.delete(`/api/deleteOneJob/${id}`);
 
-  //   Router.push("/perfil");
-  // }
-
-  async function Deletar(id: number) {
-    const response = await api
-      .delete(`/job/user/${id}`, { data: { email: session?.user?.email } })
-      .then((response) => response.data);
-
-    if (response.mensagem === `Vaga ${id} deletada`) {
-      setTimeout(() => {
-        Router.push("/perfil");
-      }, 2000);
-      return;
-    }
-
-    // Router.push("/perfil");
+    setTimeout(() => {
+      Router.push("/perfil");
+    }, 2000);
   }
 
   useEffect(() => {

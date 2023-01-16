@@ -8,8 +8,11 @@ import { CreateJobFormProps } from "../../../../types/createJobForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../yup/formValidation";
 import { api } from "../../../../axios";
+import { useSession } from "next-auth/react";
 
 export function CreateJobForm() {
+  const props = useSession()
+
   const {
     control,
     register,
@@ -34,9 +37,18 @@ export function CreateJobForm() {
   });
 
   async function onSubmit(data: CreateJobFormProps) {
-    api.post("/api/createJob", {
-      data,
-    });
+
+    if (props) {
+      const linguangens: any = data.Tecnologias.flatMap(
+        (linguagens: any) => linguagens.linguagem
+      );
+      data.Tecnologias = linguangens;
+      data.dono = `${props.data?.user?.email}`
+
+      api.post("/api/createJob", {
+        data,
+      });
+    }
   }
 
   function addTecnologia(e: React.FormEvent) {

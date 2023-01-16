@@ -9,4 +9,5 @@ export interface CreateJobFormProps {
   Tecnologias: { linguagem: String }[];
   name: string;
   emailVaga: string;
+  dono:string
 }

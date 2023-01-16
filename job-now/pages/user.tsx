@@ -9,8 +9,9 @@ import { ExibiVaga } from "../components/homePage/components/exibiVaga";
 import { useSession } from "next-auth/react";
 import { CreateJobFormProps } from "../types/createJobForm";
 
-import { Createjob } from "../requests/createJob";
 import { api } from "../axios";
+import { useQuery } from 'react-query'
+
 
 interface exibiProps {
   data: CreateJobFormProps;
@@ -20,39 +21,34 @@ interface exibiProps {
 export default function User() {
   const { data: Session, status } = useSession();
 
-  const [Jobs, setJobs] = useState<exibiProps[]>([]);
-
-  useEffect(() => {
-    async function Getjobs() {
-      const jobs = await api.get("/api/jobs").then((response) => response.data);
-
-      const data = jobs.data.map((item: any) => item);
-
-      setJobs(data);
-    }
-
-    Getjobs();
-
-    return setJobs([]);
-  }, [status, Createjob]);
-
-  if (status === "loading") {
-    return <h1>Carregando</h1>;
-  }
+  const { data, isLoading } = useQuery("allJobs", async () => {
+    const jobs = await api.get("/api/jobs").then((response) => response.data);
+    const itens = jobs.data.map((item: any) => item);
+    return itens
+  },)
 
   if (status === "unauthenticated") {
     Router.push("/login");
   }
 
-  if (Jobs.length === 0) {
-    return <h1>Carregando</h1>;
+  if (isLoading) {
+    return <h1>Carregando dados</h1>
+  }
+
+  if (data.length === 0) {
+    return (
+      <>
+        <HeaderDefaul />
+        <h1>Ainda não temos trabalhos adicionados</h1>
+      </>
+    );
   }
 
   return (
     <div className={styles.Container}>
       <HeaderDefaul />
 
-      {Jobs.map((items) => {
+      {data.map((items: exibiProps) => {
         return (
           <ExibiVaga
             idVaga={items.ref["@ref"].id}

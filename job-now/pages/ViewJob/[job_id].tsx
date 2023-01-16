@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { api } from "../../axios";
 
 import { HeaderDefaul } from "../../components/homePage/components/headerLogin";
@@ -13,6 +12,8 @@ import { Context } from "../../context/userContext";
 
 import { jobId } from "../../types/jobs";
 
+import { useQuery } from 'react-query'
+
 interface viewJobProps {
   resposta: { data: jobId };
 }
@@ -23,25 +24,20 @@ export default function ViewJob() {
   const router = useRouter();
   const { job_id } = router.query;
 
-  const [job, setJob] = useState<jobId>();
+  const { data, isLoading } = useQuery("oneJobInformation", async () => {
+    const request: viewJobProps = await api
+      .post(`api/oneJobInformation/${job_id}`)
+      .then((response) => response.data);
 
-  useEffect(() => {
-    async function apiFindJob() {
-      const data: viewJobProps = await api
-        .post(`api/oneJobInformation/${job_id}`)
-        .then((response) => response.data);
+    return request.resposta.data
+  })
 
-      setJob(data.resposta.data);
-    }
 
-    apiFindJob();
 
-    return setJob({} as jobId);
-  }, [job_id]);
 
   function RenderTecnlogias() {
-    if (job?.Tecnologias) {
-      return job.Tecnologias.map((tec, index) => {
+    if (data?.Tecnologias) {
+      return data.Tecnologias.map((tec, index) => {
         return <li key={index}>{String(tec)}</li>;
       });
     }
@@ -51,7 +47,7 @@ export default function ViewJob() {
     return (
       <button>
         <a
-          href={`${emailLinkGen(`${job?.emailVaga}`, `${job?.TituloVaga}`)}`}
+          href={`${emailLinkGen(`${data?.emailVaga}`, `${data?.TituloVaga}`)}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -69,7 +65,11 @@ export default function ViewJob() {
     );
   }
 
-  if (!job?.emailVaga) {
+  if (isLoading) {
+    return <h1>Carregando dados...</h1>
+  }
+
+  if (!data?.emailVaga) {
     return <h1>Carregando</h1>;
   }
 
@@ -82,26 +82,26 @@ export default function ViewJob() {
           <h1>FOTO</h1>
         </div>
 
-        <h1>{job?.TituloVaga}</h1>
+        <h1>{data?.TituloVaga}</h1>
 
-        <h2>{job?.Detalhes}</h2>
+        <h2>{data?.Detalhes}</h2>
 
         <h3>Tecnologias</h3>
         <ul>{RenderTecnlogias()}</ul>
 
         <h4>Tipo de vaga</h4>
-        <p className={styles.VagaTipo}>{job?.tipo}</p>
+        <p className={styles.VagaTipo}>{data?.tipo}</p>
 
         <h5>Experiencia</h5>
-        <p className={styles.experiencia}>{job?.Experiencia}</p>
+        <p className={styles.experiencia}>{data?.Experiencia}</p>
 
         <h6>Salário</h6>
         <p className={styles.salario}>
-          {job?.Salario
-            ? job.Salario.toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              })
+          {data?.Salario
+            ? data.Salario.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })
             : 0}
         </p>
 

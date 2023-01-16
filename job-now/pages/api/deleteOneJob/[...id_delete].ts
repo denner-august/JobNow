@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { client, q } from "../faunaConfig";
-import {  useQueryClient } from 'react-query'
 
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,8 +15,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json({ resposta: `vaga ${id_delete} deletada` });
 
-    const queryClient = useQueryClient()
-    queryClient.invalidateQueries('allJobs')
+
   } catch (error) {
     return res.status(400).json({ respsota: error });
   }

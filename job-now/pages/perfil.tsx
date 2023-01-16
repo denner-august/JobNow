@@ -12,6 +12,7 @@ import { Context } from "../context/userContext";
 import { jobProps } from "../types/jobs";
 
 import { useSession } from "next-auth/react";
+import { Loading } from "../components/homePage/components/Loading";
 
 interface perfilProps extends jobProps {
   ref: { ["@ref"]: { id: number } };
@@ -63,7 +64,12 @@ export default function Perfil() {
   }
 
   if (status === "loading") {
-    return <h1>Carregando</h1>;
+    return (
+      <>
+        <HeaderDefaul />
+        <Loading />
+      </>
+    )
   }
 
   return (

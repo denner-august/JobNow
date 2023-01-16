@@ -1,7 +1,9 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import jobs from "../jobs/jobs.json";
 import Router from "next/router";
+
+import { useQueryClient } from 'react-query'
+
 
 import { api } from "../axios";
 
@@ -30,6 +32,7 @@ type ContextProps = {
 export const Context = createContext({} as ContextProps);
 
 export default function ContextProvider({ children }: childrens) {
+  const queryClient = useQueryClient()
   const { data: session } = useSession();
 
   const [user, setUser] = useState<ContextProps | any>();
@@ -38,8 +41,9 @@ export default function ContextProvider({ children }: childrens) {
 
   const [DeletarVaga, setDeletarVaga] = useState(false);
 
-  async function Deletar(id: string | string[] | undefined) {
-    const data = await api.delete(`/api/deleteOneJob/${id}`);
+  function Deletar(id: string | string[] | undefined) {
+
+    api.delete(`/api/deleteOneJob/${id}`).then(() => queryClient.invalidateQueries('allJobs'));
 
     setTimeout(() => {
       Router.push("/perfil");

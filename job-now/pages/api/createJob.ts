@@ -14,13 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     client.query(q.Create(q.Collection("jobs"), { data }));
-    res.status(200).json("job criado");
-
-
-  const queryClient = useQueryClient()
-  queryClient.invalidateQueries('allJobs')
-
-  
+    res.status(200).json("job criado");  
   } catch (error) {
     res.status(400).json(error);
   }

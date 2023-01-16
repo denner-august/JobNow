@@ -9,9 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../yup/formValidation";
 import { api } from "../../../../axios";
 import { useSession } from "next-auth/react";
+import { useQueryClient } from 'react-query'
+
 
 export function CreateJobForm() {
   const props = useSession()
+  const queryClient = useQueryClient()
 
   const {
     control,
@@ -47,7 +50,8 @@ export function CreateJobForm() {
 
       api.post("/api/createJob", {
         data,
-      });
+      }).then(() =>
+        queryClient.invalidateQueries('allJobs'));
     }
   }
 

@@ -12,6 +12,8 @@ import { CreateJobFormProps } from "../types/createJobForm";
 import { api } from "../axios";
 import { useQuery } from 'react-query'
 
+import { Loading } from "../components/homePage/components/Loading";
+
 
 interface exibiProps {
   data: CreateJobFormProps;
@@ -24,7 +26,10 @@ export default function User() {
   const { data, isLoading } = useQuery("allJobs", async () => {
     const jobs = await api.get("/api/jobs").then((response) => response.data);
     const itens = jobs.data.map((item: any) => item);
+
     return itens
+
+
   },)
 
   if (status === "unauthenticated") {
@@ -35,11 +40,12 @@ export default function User() {
     return <h1>Carregando dados</h1>
   }
 
+
   if (data.length === 0) {
     return (
       <>
         <HeaderDefaul />
-        <h1>Ainda não temos trabalhos adicionados</h1>
+        <Loading />
       </>
     );
   }

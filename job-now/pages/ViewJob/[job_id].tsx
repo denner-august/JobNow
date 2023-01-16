@@ -13,6 +13,7 @@ import { Context } from "../../context/userContext";
 import { jobId } from "../../types/jobs";
 
 import { useQuery } from 'react-query'
+import { Loading } from "../../components/homePage/components/Loading";
 
 interface viewJobProps {
   resposta: { data: jobId };
@@ -31,9 +32,6 @@ export default function ViewJob() {
 
     return request.resposta.data
   })
-
-
-
 
   function RenderTecnlogias() {
     if (data?.Tecnologias) {
@@ -65,8 +63,14 @@ export default function ViewJob() {
     );
   }
 
+
   if (isLoading) {
-    return <h1>Carregando dados...</h1>
+    return (
+      <>
+        <HeaderDefaul />
+        <Loading />
+      </>
+    )
   }
 
   if (!data?.emailVaga) {

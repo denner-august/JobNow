@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const request: dataProps = await client.query(
     q.Map(
-      q.Paginate(q.Match(q.Index("jobUserEmail"), [email])),
+      q.Paginate(q.Match(q.Index("responsavel"), [email])),
       q.Lambda((x) => q.Get(x))
     )
   );

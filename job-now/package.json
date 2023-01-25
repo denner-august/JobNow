@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "compila": "npx tsc ./back-end/config.ts"
+    "compila": "npx tsc ./back-end/config.ts",
+    "commit":"cz"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",

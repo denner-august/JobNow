@@ -4,5 +4,3 @@
 Linkedin: https://www.linkedin.com/in/denner-bernardes/
 
 Github: https://github.com/denner-august
-
-Youtube: https://www.youtube.com/channel/UC83BbwCzMr-p4MXuDH_ZyCw

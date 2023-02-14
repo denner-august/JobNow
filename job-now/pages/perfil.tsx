@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { api } from "../axios";
 
 import Styles from "../styles/perfil.module.scss";
@@ -11,35 +11,28 @@ import { Context } from "../context/userContext";
 
 import { jobProps } from "../types/jobs";
 
-import { useSession } from "next-auth/react";
 import { Loading } from "../components/homePage/components/Loading";
+
+import UseSWR from 'swr'
 
 interface perfilProps extends jobProps {
   ref: { ["@ref"]: { id: number } };
 }
 
 export default function Perfil() {
+
   const { user } = useContext(Context);
-  const { status } = useSession();
 
   const [jobsUser, setJObsUser] = useState<any>([]);
 
-  async function getJobUser() {
-    const data = await api
-      .post("/api/allJobOneUser", {
-        email: user?.email,
-      })
-      .then((response) => response.data);
-    setJObsUser(data);
-    return;
-  }
+  const request = (url: string) => api.post(url, {
+    email: user?.email,
+  }).then(response => setJObsUser(response.data))
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      getJobUser();
-    }
-    return setJObsUser([]);
-  }, [status, user]);
+  const { data, isLoading } = UseSWR("/api/allJobOneUser", request, {
+    revalidateOnFocus: false,
+    refreshInterval: 300000
+  })
 
   function MostraVagas() {
     return jobsUser.map((items: perfilProps) => {
@@ -63,7 +56,7 @@ export default function Perfil() {
     );
   }
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <>
         <HeaderDefaul />
@@ -76,7 +69,7 @@ export default function Perfil() {
     <div className={styles.Container}>
       <HeaderDefaul />
 
-      {jobsUser.length === 0 || jobsUser === "você não criou nenhuma vaga"
+      {jobsUser.length === 0
         ? SemVaga()
         : MostraVagas()}
     </div>

@@ -25,13 +25,7 @@ export function CreateJobForm() {
   } = useForm<CreateJobFormProps>({
     resolver: yupResolver(schema),
 
-    defaultValues: {
-      Tecnologias: [
-        { linguagem: "javascript" },
-        { linguagem: "python" },
-        { linguagem: "c++" },
-      ],
-    },
+
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -75,7 +69,7 @@ export function CreateJobForm() {
         <input
           placeholder="Titulo da vaga"
           {...register("TituloVaga")}
-          defaultValue="titulo da vaga"
+
         />
 
         <label> Email para receber os curriculos </label>
@@ -84,7 +78,7 @@ export function CreateJobForm() {
         <input
           placeholder="Email para os candidatos enviarem o curriculo"
           {...register("emailVaga")}
-          defaultValue="javascript@gmail.com"
+
         />
 
         <p>{errors.Detalhes?.message}</p>
@@ -92,8 +86,7 @@ export function CreateJobForm() {
         <textarea
           placeholder="Detalhes da vaga"
           {...register("Detalhes")}
-          defaultValue="
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus voluptate, deserunt, reprehenderit doloremque placeat voluptatem quod accusantium molestiae commodi eos provident aspernatur? Debitis voluptate tempore mollitia error. Architecto, repellendus."
+
         />
 
         <p>{errors.tipo?.message}</p>
@@ -123,7 +116,7 @@ export function CreateJobForm() {
         <input
           placeholder="Qual o salario para a vaga"
           {...register("Salario")}
-          defaultValue={500}
+
         />
 
         <p>{errors.Experiencia?.message}</p>

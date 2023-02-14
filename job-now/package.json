@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "compila": "npx tsc ./back-end/config.ts",
     "commit":"cz"
   },
   "dependencies": {
@@ -24,6 +23,7 @@
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.4.8",
     "swiper": "^8.4.4",
+    "swr": "^2.0.3",
     "typewriter-effect": "^2.19.0",
     "yup": "^0.32.11"
   },

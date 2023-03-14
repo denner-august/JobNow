@@ -27,15 +27,6 @@ export function Header() {
             Linkedin
           </a>
         </li>
-        <li>
-          <a
-            href="https://www.youtube.com/channel/UC83BbwCzMr-p4MXuDH_ZyCw"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Youtube
-          </a>
-        </li>
       </ul>
       <button onClick={() => Router.push("login")}>Entre</button>
     </div>
